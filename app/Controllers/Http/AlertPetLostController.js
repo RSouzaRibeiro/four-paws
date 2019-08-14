@@ -20,7 +20,9 @@ class AlertPetLostController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view, auth }) {
-    const alert = await AlertPetLost.all()
+    const alert = await AlertPetLost.query()
+    .with('pet')
+    .fetch()
    
     return alert
   }
@@ -30,6 +32,7 @@ class AlertPetLostController {
     const alert = await AlertPetLost
     .query()
     .where('user_id', '=', id)
+    .with('pet')
     .fetch()
    
     return alert
