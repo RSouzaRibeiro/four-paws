@@ -11,6 +11,10 @@ class User extends Model {
   pets () {
     return this.hasMany('App/Models/Pet')
   }
+
+  alert () {
+    return this.hasMany('App/Models/AlertPetLostSchema')
+  }
   
   static boot () {
     super.boot()

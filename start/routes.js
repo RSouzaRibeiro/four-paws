@@ -21,6 +21,10 @@ Route.resource('/pets', 'PetController')
     .apiOnly()
     .middleware('auth')
 
+Route.resource('/alerts', 'AlertPetLostController')
+    .apiOnly()
+    .middleware('auth')
+
 Route.post('pets/:id/images', 'ImageController.store')
     .middleware('auth')
 
