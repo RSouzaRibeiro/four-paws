@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class AlertPetLost extends Model {
-    pets() {
+    pet() {
         return this.belongsTo('App/Models/Pet')
       }
 }

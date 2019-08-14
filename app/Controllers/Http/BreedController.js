@@ -16,21 +16,8 @@ class BreedController {
   async index({ request, response, view }) {
   }
 
-  /**
-   * Render a form to be used for creating a new breed.
-   * GET breeds/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create({ request }) {
-
-    const data = request.only(["breedname", "postage"]);
-    const breed = await Breed.create(data);
-    return breed
-  }
+  
+  
 
   /**
    * Create/save a new breed.
@@ -41,6 +28,9 @@ class BreedController {
    * @param {Response} ctx.response
    */
   async store({ request, response }) {
+    const data = request.only(["breedname", "postage"]);
+    const breed = await Breed.create(data);
+    return breed
   }
 
   /**

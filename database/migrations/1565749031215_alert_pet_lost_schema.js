@@ -23,7 +23,7 @@ class AlertPetLostSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
         .notNullable()
-
+      table.boolean('is_lost').defaultTo(true)
       table.decimal('latitude', 9, 6).notNullable()
       table.decimal('longitude', 9, 6).notNullable()
       table.timestamps()

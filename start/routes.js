@@ -16,6 +16,9 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.resource('breeds', 'BreedController')
+    .apiOnly()
+    .middleware('auth')
 
 Route.resource('/pets', 'PetController')
     .apiOnly()
@@ -25,6 +28,9 @@ Route.resource('/alerts', 'AlertPetLostController')
     .apiOnly()
     .middleware('auth')
 
+    Route.get('/myalerts', 'AlertPetLostController.myAlerts' )
+    .middleware('auth')
+
 Route.post('pets/:id/images', 'ImageController.store')
     .middleware('auth')
 
@@ -32,4 +38,4 @@ Route.get('images/:path', 'ImageController.show')
 
 Route.post('/users', 'UserController.create')
 Route.post('/sessions', 'SessionController.create')
-Route.post('/breeds', 'BreedController.create')
+

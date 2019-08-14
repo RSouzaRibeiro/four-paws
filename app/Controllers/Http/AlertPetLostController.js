@@ -19,20 +19,23 @@ class AlertPetLostController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index ({ request, response, view, auth }) {
+    const alert = await AlertPetLost.all()
+   
+    return alert
   }
 
-  /**
-   * Render a form to be used for creating a new alertpetlost.
-   * GET alertpetlosts/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async myAlerts ({ request, response, view, auth }) {
+    const { id } = auth.user
+    const alert = await AlertPetLost
+    .query()
+    .where('user_id', '=', id)
+    .fetch()
+   
+    return alert
   }
+
+ 
 
   /**
    * Create/save a new alertpetlost.
@@ -61,19 +64,11 @@ class AlertPetLostController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    const alert = await AlertPetLost.findOrFail(params.id)
+    await alert.load('pet')
+    return alert
   }
 
-  /**
-   * Render a form to update an existing alertpetlost.
-   * GET alertpetlosts/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
 
   /**
    * Update alertpetlost details.
